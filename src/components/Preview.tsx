@@ -1,23 +1,29 @@
+import {
+  Columns,
+  Dropdown,
+  Text,
+  VerticalSpace,
+} from "@create-figma-plugin/ui";
+import { emit } from "@create-figma-plugin/utilities";
+import { Clipboard } from "lucide-preact";
 import { h, JSX } from "preact";
 import SyntaxHighlighter from "react-syntax-highlighter";
 import { docco } from "react-syntax-highlighter/dist/esm/styles/hljs";
 import { useJsonPreviewString } from "../hooks/useJsonPreviewString";
-import {
-  Columns,
-  Dropdown,
-  IconButton,
-  Text,
-  VerticalSpace,
-} from "@create-figma-plugin/ui";
-import { Clipboard } from "lucide-preact";
+import { copyTextToClipboard } from "../utils/copy-to-clipboard";
 import { Section } from "./ui/Section";
 
 export const Preview = () => {
   const jsonPreview = useJsonPreviewString();
+  const jsonText = JSON.stringify(jsonPreview, null, 2);
 
-  function handleClick(event: JSX.TargetedEvent<HTMLButtonElement>) {
-    console.log(event);
+  function handleCopyToClipboardClick(
+    event: JSX.TargetedEvent<HTMLButtonElement>
+  ) {
+    copyTextToClipboard(jsonText);
+    emit("COPY_TO_CLIPBOARD", "123123");
   }
+
   return (
     <Section title="Preview" flex>
       <div class="code-panel">
@@ -27,7 +33,7 @@ export const Preview = () => {
               tokens.json
             </Text>
           </div>
-          <Columns style={{ alignItems: "center", gap: 4 }} >
+          <Columns style={{ alignItems: "center", gap: 4 }}>
             <Dropdown
               variant="border"
               options={[
@@ -36,7 +42,12 @@ export const Preview = () => {
               ]}
               value={"json"}
             />
-            <button data-tooltip="Copy to clipboard" data-tooltip-type="text" class="icon-button" onClick={handleClick}>
+            <button
+              data-tooltip="Copy to clipboard"
+              data-tooltip-type="text"
+              class="icon-button"
+              onClick={handleCopyToClipboardClick}
+            >
               <Clipboard size={14} />
             </button>
           </Columns>
@@ -50,7 +61,7 @@ export const Preview = () => {
               language="json"
               style={docco}
             >
-              {JSON.stringify(jsonPreview, null, 2)}
+              {jsonText}
             </SyntaxHighlighter>
             <style jsx>{`
               code.language-json {

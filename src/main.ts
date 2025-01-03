@@ -11,6 +11,10 @@ export default function () {
     }
   );
 
+  on("COPY_TO_CLIPBOARD", function (text) {
+    figma.notify("Copied to clipboard", { timeout: 3000 });
+  });
+
   once<UiReady>("UI_READY", function () {
     // Sync collections
     const collections = figma.variables.getLocalVariableCollections();
