@@ -1,0 +1,110 @@
+.ui {
+  display: grid;
+  grid-template-columns: 220px 1fr;
+  background-color: var(--figma-color-bg);
+  height: 100%;
+  overflow: hidden;
+}
+
+.left-col {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-medium);
+  border-right: 1px solid var(--figma-color-border);
+  height: 100%;
+  overflow: auto;
+}
+
+.right-col {
+  display: flex;
+  flex-direction: column;
+  background-color: var(--figma-color-bg);
+  overflow: auto;
+}
+.code-panel {
+  display: flex;
+  flex-grow: 1;
+  flex-shrink: 0;
+  flex-basis: 100px;
+  flex-direction: column;
+  border-radius: 5px;
+  /* border: 1px solid var(--figma-color-border); */
+  background-color: var(--figma-color-bg-secondary);
+  overflow: hidden;
+}
+
+.code-panel-header-wrapper {
+  width: 100%;
+  min-height: 32px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  border-radius: var(--radius-medium, 2px) var(--radius-medium, 2px) 0 0;
+  background-color: var(--color-bg-secondary);
+  padding: 2px 6px;
+  box-shadow: 0 -1px 0 0 var(--figma-color-border) inset;
+}
+
+.code-panel-header-wrapper .title {
+  font-weight: 500;
+  color: var(--color-text-secondary);
+  margin-left: 8px;
+  line-height: 24px;
+  
+}
+
+.code-preview {
+  flex-grow: 1;
+  /* border: 1px solid var(--figma-color-border); */
+  background-color: var(--figma-color-bg-secondary);
+  height: 200px;
+  overflow: auto;
+  font-family: var(--font-family-code);
+}
+
+.appearance-list {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  margin-top: 8px;
+}
+.appearance-row {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+/* Components */
+.section {
+  display: flex;
+  flex-direction: column;
+}
+.section-title {
+  display: flex;
+  align-items: center;
+  padding: 0 16px;
+  height: 40px;
+}
+
+.section-body {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  padding: 0 16px;
+}
+
+.icon-button {
+  position: relative;
+  width: 24px;
+  height: 24px;
+  border: 2px solid transparent;
+  border-radius: var(--border-radius-3);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.icon-button:hover {
+  background-color: #0000001a;
+}

@@ -1,0 +1,42 @@
+diff --git a/node_modules/@create-figma-plugin/ui/lib/components/dropdown/dropdown.module.css b/node_modules/@create-figma-plugin/ui/lib/components/dropdown/dropdown.module.css
+index ff3c014..2db079c 100644
+--- a/node_modules/@create-figma-plugin/ui/lib/components/dropdown/dropdown.module.css
++++ b/node_modules/@create-figma-plugin/ui/lib/components/dropdown/dropdown.module.css
+@@ -4,7 +4,7 @@
+   display: flex;
+   width: 100%;
+   min-width: 0; /* See https://css-tricks.com/flexbox-truncated-text/ */
+-  height: 28px;
++  height: 24px;
+   align-items: center;
+   padding-left: var(--space-extra-small);
+   color: var(--figma-color-text);
+@@ -43,6 +43,7 @@
+   margin-right: 6px;
+   text-overflow: ellipsis;
+   white-space: nowrap;
++  flex: 1;
+ }
+ .dropdown:not(.disabled):hover .value,
+ .dropdown:not(.disabled):focus .value,
+@@ -78,7 +79,7 @@
+   bottom: 0;
+   left: 0;
+   border: 1px solid transparent;
+-  border-radius: var(--border-radius-2);
++  border-radius: var(--border-radius-3);
+ }
+ .hasBorder .border,
+ .dropdown:not(.disabled):not(:focus):hover .border {
+diff --git a/node_modules/@create-figma-plugin/ui/lib/css/base.css b/node_modules/@create-figma-plugin/ui/lib/css/base.css
+index 609fda3..762f39e 100644
+--- a/node_modules/@create-figma-plugin/ui/lib/css/base.css
++++ b/node_modules/@create-figma-plugin/ui/lib/css/base.css
+@@ -1,6 +1,7 @@
+ :root {
+   --border-1: 1px;
+   --border-radius-2: 2px;
++  --border-radius-3: 3px;
+   --border-radius-6: 6px;
+   --box-shadow: var(--box-shadow-menu);
+   --box-shadow-menu: 0 5px 17px rgba(0, 0, 0, 0.2),
