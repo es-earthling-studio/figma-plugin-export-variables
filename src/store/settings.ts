@@ -9,7 +9,7 @@ interface SettingsState {
   colorFormat: string;
   showHiddenFromPublishingVariables: boolean;
   shouldResolveVariableAlias: boolean;
-  shouldGroupModes: boolean;
+  shouldHideSingleMode: boolean;
   updateNamingConvention: (nc: NamingConvetionType) => void;
   updateVariableTypes: (type: VariableType, add: boolean) => void;
 }
@@ -22,7 +22,7 @@ export const useSettingsStore = create(
       colorFormat: "hex",
       showHiddenFromPublishingVariables: true,
       shouldResolveVariableAlias: true,
-      shouldGroupModes: true,
+      shouldHideSingleMode: true,
       updateNamingConvention: (nc) => set(() => ({ namingConvention: nc })),
       updateVariableTypes: (type, add) =>
         set((state) => ({

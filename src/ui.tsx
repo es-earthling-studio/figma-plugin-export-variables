@@ -1,15 +1,15 @@
 import "!prismjs/themes/prism.css";
 
+import "!./styles/global.css";
+import "!./styles/styles.css";
 import { render, useWindowResize } from "@create-figma-plugin/ui";
 import { h } from "preact";
 import { AppearanceConfig } from "./components/AppearanceConfig";
-import "!./styles/styles.css";
-import '!./styles/global.css'
 
-import { useEffect } from "react";
 import { emit } from "@create-figma-plugin/utilities";
-import { Preview } from "./components/Preview";
+import { useEffect } from "react";
 import { GeneralConfig } from "./components/GeneralConfig";
+import { Preview } from "./components/Preview";
 import { useSynFigma } from "./hooks/useSyncFigma";
 import { ResizeWindowHandler } from "./types";
 

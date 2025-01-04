@@ -1,9 +1,4 @@
-import {
-  Columns,
-  Dropdown,
-  Text,
-  VerticalSpace,
-} from "@create-figma-plugin/ui";
+import { Columns, Dropdown, Text } from "@create-figma-plugin/ui";
 import { emit } from "@create-figma-plugin/utilities";
 import { Clipboard } from "lucide-preact";
 import { h, JSX } from "preact";
@@ -81,7 +76,6 @@ export const Preview = () => {
           </div>
         </div>
       </div>
-      <VerticalSpace space="medium" />
     </Section>
   );
 };

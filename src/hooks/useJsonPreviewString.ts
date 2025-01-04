@@ -1,7 +1,7 @@
+import _ from "lodash";
 import { useFigmaStore } from "../store/figma";
 import { useSettingsStore } from "../store/settings";
 import { NamingConvetionType } from "../types";
-import _ from "lodash";
 
 export const useJsonPreviewString = () => {
   const { collections, variables } = useFigmaStore();
@@ -10,7 +10,7 @@ export const useJsonPreviewString = () => {
     variableTypes,
     showHiddenFromPublishingVariables,
     shouldResolveVariableAlias,
-    shouldGroupModes,
+    shouldHideSingleMode,
   } = useSettingsStore();
 
   const extractVariableForMode = (variableIds: string[], modeId: string) => {
@@ -43,7 +43,9 @@ export const useJsonPreviewString = () => {
 
     // Recursive if is variable alias
     if (matchedVariable) {
-      const modeValue = matchedVariable.valuesByMode[modeId] || Object.values(matchedVariable.valuesByMode)[0];
+      const modeValue =
+        matchedVariable.valuesByMode[modeId] ||
+        Object.values(matchedVariable.valuesByMode)[0];
       if (modeValue) {
         if (
           (modeValue as VariableAlias).type === "VARIABLE_ALIAS" &&
@@ -74,19 +76,19 @@ export const useJsonPreviewString = () => {
         : col.hiddenFromPublishing === false
     ) {
       const collectionName = formatTokenName(col.name || "", "camel");
-      if (shouldGroupModes && col.modes.length > 1) {
+      if (shouldHideSingleMode && col.modes.length === 1) {
+        collectionMap[collectionName] = extractVariableForMode(
+          col.variableIds,
+          col.modes[0].modeId
+        );
+      } else {
         collectionMap[collectionName] = col.modes.reduce((modeMap, mode) => {
-          modeMap[mode.name] = extractVariableForMode(
+          modeMap[formatTokenName(mode.name, "camel")] = extractVariableForMode(
             col.variableIds,
             mode.modeId
           );
           return modeMap;
         }, {} as any);
-      } else {
-        collectionMap[collectionName] = extractVariableForMode(
-          col.variableIds,
-          col.modes[0].modeId
-        );
       }
     }
     return collectionMap;
